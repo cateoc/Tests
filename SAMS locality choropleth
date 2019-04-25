@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "description": "Basic choropleth (rate/ratio)",
+  "autosize": "fit",
+  "width": 600,
+  "height": 300,
+  "title": "Number of SAMS packages, 2018/19",
+  "data": {
+    "url": "https://www.trafforddatalab.io/spatial_data/council_defined/trafford_localities.geojson",
+    "format": {"property": "features"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.locality",
+      "from": {
+        "data": {
+          "values": [
+            {"locality": "Central", "value": 286},
+            {"locality": "North", "value": 232},
+            {"locality": "South", "value": 326},
+            {"locality": "West", "value": 218}
+          ]
+        },
+        "key": "locality",
+        "fields": ["value"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+  "projection": {"type": "mercator"},
+  "encoding": {
+    "color": {
+      "field": "value",
+      "scale": {"scheme": "blues"},
+      "type": "quantitative",
+      "legend": {
+        "title": null,
+        "direction": "horizontal",
+        "orient": "bottom-left"
+      }
+    },
+        "tooltip": [
+          {"field": "properties.locality", "type": "nominal", "title": "Locality"},
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Rate"
+          }
+        ]
+  },
+  "config": {"view": {"stroke": "transparent"}}
+}

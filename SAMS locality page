@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- import the required JavaScript libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@4.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@2.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.24.2"></script>
+</head>
+<body>
+
+  <div id="vis">https://raw.githubusercontent.com/cateoc/Tests/master/SAMS%20locality%20choropleth</div>
+
+  <script type="text/javascript">
+    // Parse Vega specifications using Vega-Embed
+    vegaEmbed('#vis', "src/bar_labels.vl.json", {defaultStyle: true}).catch(console.warn);
+  </script>
+</body>
+</html>
